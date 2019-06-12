@@ -4,11 +4,12 @@ import {Header, Button, Icon, Table} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import Product from './Product'
 
-const Products = () => {
+
+const Products = (props) => {
   const [products, setProducts] =useState([])
   
   useEffect(()=>{
-    axios.get(`/api/departments/${this.id}/products`)
+    axios.get(`/api/departments/${this.props.id}/products`)
     .then(res =>(
       setProducts(res.data)
     ))
@@ -24,7 +25,7 @@ const Products = () => {
 
   return(
   <>
-    <Header as='h1'>test</Header>
+    <Header as='h1'>{}</Header>
     <Table>
       <Table.Body>
         {renderProducts}

@@ -2,13 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import {Card, Header, Button, Icon, Table, Form} from 'semantic-ui-react'
 import {link} from 'react-router-dom'
-import DepartmentForm from './DepartmentForm';
+import ProductForm from './ProductForm';
 
-class Department extends React.Component{
-  state = {name:"",tempName:"",editing:false,department:{}}
+class Product extends React.Component{
+  state = {name:"",tempName:"",editing:false,product:{}}
 
   deleteRecord=()=>{
-    axios.delete(`/api/departments/${this.props.id}`)
+    axios.delete(`/api/products/${this.props.match.params.id}`)
     }
 
     toggleEdit=()=>{
@@ -19,25 +19,24 @@ class Department extends React.Component{
 
     handleSubmit=(e)=>{
       e.preventDefault();
-      axios.patch(`/api/departments/${this.props.id}`)
-      .then( res => {
-        this.props.history.push("/admin")
-      })
+      axios.patch(`/api/products/${this.props.id}`)
+      // .then( res => {
+      //   this.props.history.push("/admin")})
     }
     
     componentDidMount=()=>{
       this.setState({name: this.props.name})
     }
 
-    editForm=()=>{
-      if(this.state.editing)
-        return(
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Input placeholder="Name" name="tempName" value={this.props.name} onChange={this.handleChange} required/>
-          </Form>
-        ) 
-      return this.state.name
-      }
+    // editForm=()=>{
+    //   if(this.state.editing)
+    //     return(
+    //       <Form onSubmit={this.handleSubmit}>
+    //         <Form.Input placeholder="Name" name="tempName" value={this.props.name} onChange={this.handleChange} required/>
+    //       </Form>
+    //     ) 
+    //   return this.state.name
+    //   }
 
   render(){
       return(
@@ -60,11 +59,11 @@ class Department extends React.Component{
           
         </Table.Cell>
         <Table.Cell>
-          {this.editForm()}
+          {/* {this.editForm()} */}
         </Table.Cell>
       </Table.Row>
     )
   }
 }
 
-export default Department
+export default Product
