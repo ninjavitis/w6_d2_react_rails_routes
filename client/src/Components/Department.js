@@ -5,24 +5,30 @@ import {link} from 'react-router-dom'
 import DepartmentForm from './DepartmentForm';
 
 class Department extends React.Component{
+  defaultValues ={name:"", tempName:"", editing:false, department:{}}  
   state = {name:"",tempName:"",editing:false,department:{}}
 
   deleteRecord=()=>{
     axios.delete(`/api/departments/${this.props.id}`)
-    }
+    this.setState({ state: this.state });
+  }
 
     toggleEdit=()=>{
       this.setState({editing:!this.state.editing})
     }
 
-    handleChange=(e,{tempName,value}) => this.setState({[tempName]:value})
+    // handleChange = (e) => {
+    //   this.setState({ [this.state.name]: e.target.value,})
+    // }
+    
+    handleChange = (tempName) => (e) => {
+      this.setState({...this.state, [tempName]: e.target.value})
+    }
 
     handleSubmit=(e)=>{
       e.preventDefault();
-      axios.patch(`/api/departments/${this.props.id}`)
-      .then( res => {
-        this.props.history.push("/admin")
-      })
+      this.toggleEdit();
+      axios.patch(`/api/departments/${this.props.id}`, {name:this.state.tempName})
     }
     
     componentDidMount=()=>{
@@ -33,7 +39,7 @@ class Department extends React.Component{
       if(this.state.editing)
         return(
           <Form onSubmit={this.handleSubmit}>
-            <Form.Input placeholder="Name" name="tempName" value={this.props.name} onChange={this.handleChange} required/>
+            <Form.Input placeholder="Name"  value={this.state.tempName} onChange={this.handleChange('tempName')} required/>
           </Form>
         ) 
       return this.state.name

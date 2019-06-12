@@ -8,4 +8,10 @@
 
 
 100.times do
+  Product.create(
+    name: "#{Faker::Color.color_name} Hoverboard",
+    description: Faker::Lorem.sentence,
+    price: Faker::Commerce.price.to_f,
+    department_id: 22
+  )
 end

@@ -14,7 +14,8 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/admin" component={Admin} />
-        <Route exact path="/hoverboards" render={(props) => <Products id="9" name="Hoverboards" />}/>
+        <Route exact path="/hoverboards" render={(props) => <Products id="22" name="Hoverboards" />}/>
+        <Route exact path="/maidenmerch" render={(props) => <Products id="24" name="Maiden Merch" />}/>
         <Route exact path="/department/:new" component={DepartmentForm} />
         <Route exact path="/department/:id" component={Products} />
       </Switch>

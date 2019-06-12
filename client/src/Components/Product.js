@@ -8,8 +8,7 @@ class Product extends React.Component{
   state = {name:"",tempName:"",editing:false,product:{}}
 
   deleteRecord=()=>{
-    axios.delete(`/api/products/${this.props.match.params.id}`)
-    }
+    axios.delete(`/api/departments/${this.props.department_id}/products/${this.props.id}`)}
 
     toggleEdit=()=>{
       this.setState({editing:!this.state.editing})

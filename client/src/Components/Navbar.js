@@ -7,10 +7,10 @@ const Navbar = () => (
     <Menu.Header as={Link} to="/">
       SPACEMALL
     </Menu.Header>
-    <Menu.Item as={Link} to="/Hoverboards">
+    <Menu.Item as={Link} to="/hoverboards">
       Hoverboards
     </Menu.Item>
-    <Menu.Item as={Link} to="/">
+    <Menu.Item as={Link} to="/maidenmerch">
       Maiden Merch
     </Menu.Item>
     <Menu.Item as={Link} to="/admin">
