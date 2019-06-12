@@ -18,13 +18,13 @@ const Products = (props) => {
     if (products.length <= 0)
       return <Table.Row><Table.Cell>No products Found</Table.Cell></Table.Row>
     return products.map(product=>(
-      <Product key={product.id} name={product.name} id={product.id}/>
+      <Product key={product.id} name={product.name} description={product.description} price={product.price} id={product.id}/>
     ))
   }
 
   return(
   <>
-    <Header as='h1'>{}</Header>
+    <Header as='h1'>{props.name}</Header>
     <Table>
       <Table.Body>
         {renderProducts()}

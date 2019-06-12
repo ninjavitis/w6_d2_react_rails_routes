@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {Card, Header, Button, Icon, Table, Form} from 'semantic-ui-react'
+import {Card, Header, Button, Icon, Table, Form,} from 'semantic-ui-react'
 import {link} from 'react-router-dom'
 import ProductForm from './ProductForm';
 
@@ -59,6 +59,9 @@ class Product extends React.Component{
           
         </Table.Cell>
         <Table.Cell>
+          <Header as="h3">{this.props.name}</Header>
+          <p>{this.props.description}</p>
+          <p>{this.props.price}</p>
           {/* {this.editForm()} */}
         </Table.Cell>
       </Table.Row>

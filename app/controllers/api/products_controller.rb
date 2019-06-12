@@ -2,7 +2,7 @@ class Api::ProductsController < ApplicationController
   before_action :set_product, only: [:update, :destroy]
   before_action :set_department
   def index
-    render json: Product.find(params[:department_id])
+    render json: Department.find(params[:department_id]).products
   end
 
   def create
