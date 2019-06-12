@@ -5,7 +5,7 @@ import {link} from 'react-router-dom'
 import ProductForm from './ProductForm';
 
 class Product extends React.Component{
-  state = {name:"",tempName:"",editing:false,product:{}}
+  state = {name:"",tempName:"", tempDesc:"", tempPrice:0, editing:false,product:{}}
 
   deleteRecord=()=>{
     axios.delete(`/api/departments/${this.props.department_id}/products/${this.props.id}`)}
@@ -14,7 +14,9 @@ class Product extends React.Component{
       this.setState({editing:!this.state.editing})
     }
 
-    handleChange=(e,{tempName,value}) => this.setState({[tempName]:value})
+    handleChange = (tempName) => (e) => {
+      this.setState({...this.state, [tempName]: e.target.value})
+    }
 
     handleSubmit=(e)=>{
       e.preventDefault();
@@ -27,15 +29,25 @@ class Product extends React.Component{
       this.setState({name: this.props.name})
     }
 
-    // editForm=()=>{
-    //   if(this.state.editing)
-    //     return(
-    //       <Form onSubmit={this.handleSubmit}>
-    //         <Form.Input placeholder="Name" name="tempName" value={this.props.name} onChange={this.handleChange} required/>
-    //       </Form>
-    //     ) 
-    //   return this.state.name
-    //   }
+    editForm=()=>{
+      if(this.state.editing){
+        return(
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input placeholder="Name"  value={this.state.tempName} onChange={this.handleChange('tempName')} required/>
+            <Form.Input placeholder="Description"  value={this.state.tempDesc} onChange={this.handleChange('tempDesc')} required/>
+            <Form.Input placeholder="Price"  value={this.state.tempPrice} onChange={this.handleChange('tempPrice')} required/>
+          </Form>
+        )    
+        } else {
+          return(
+            <Table.Cell>
+              <Header as="h3">{this.props.name}</Header>
+              <p>{this.props.description}</p>
+              <p>{this.props.price}</p>
+            </Table.Cell>
+          )          
+        }
+      }
 
   render(){
       return(
@@ -58,10 +70,8 @@ class Product extends React.Component{
           
         </Table.Cell>
         <Table.Cell>
-          <Header as="h3">{this.props.name}</Header>
-          <p>{this.props.description}</p>
-          <p>{this.props.price}</p>
-          {/* {this.editForm()} */}
+        
+          {this.editForm()}
         </Table.Cell>
       </Table.Row>
     )
