@@ -8,14 +8,13 @@ import Product from './Product'
 const Products = (props) => {
   const [products, setProducts] =useState([])
   
-  useEffect(()=>{
-    axios.get(`/api/departments/${this.props.id}/products`)
-    .then(res =>(
-      setProducts(res.data)
-    ))
+  useEffect((id)=>{
+    axios.get(`/api/departments/${props.id}/products`)
+    .then(res =>(setProducts(res.data)))
   },[])
   
   const renderProducts=()=>{
+    debugger
     if (products.length <= 0)
       return <Table.Row><Table.Cell>No products Found</Table.Cell></Table.Row>
     return products.map(product=>(
@@ -28,7 +27,7 @@ const Products = (props) => {
     <Header as='h1'>{}</Header>
     <Table>
       <Table.Body>
-        {renderProducts}
+        {renderProducts()}
       </Table.Body>
     </Table>
   </>

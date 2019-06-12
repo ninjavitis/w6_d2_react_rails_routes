@@ -4,7 +4,6 @@ import {Container} from 'semantic-ui-react'
 import Navbar from './Components/Navbar'
 import Home from './Components/Home'
 import Products from './Components/Products'
-import Product from './Components/Product'
 import Admin from './Components/Admin'
 import DepartmentForm from './Components/DepartmentForm'
 
